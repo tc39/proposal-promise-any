@@ -1,6 +1,6 @@
 language: node_js
 after_success:
-- $(npm bin)/set-up-ssh --key "${encrypted_4f674fc13bbf_key}" --iv "${encrypted_4f674fc13bbf_iv}"
+- $(npm bin)/set-up-ssh --key "${encrypted_13071c2f6e86_key}" --iv "${encrypted_13071c2f6e86_iv}"
   --path-encrypted-key .travis-github-deploy-key.enc
 - $(npm bin)/update-branch --commands 'npm run build' --commit-message "Update gh-pages
   @ ${TRAVIS_COMMIT}" --directory 'dist' --distribution-branch 'gh-pages' --source-branch
@@ -10,4 +10,4 @@ branches:
   - master
 env:
   global:
-    secure: uM7xiej3qeRMbce4Z2tpVTaYVDcRR89qGy83BiV9AquB5VjDVEOnYxzUKBZTbCGqpI9ZJhwCq/fyn5hZZbBZS++JlfBEsPBdUzhm4M6bQxHgyGSzaPjWUEjLEZyhBORAwXQgf6w15bgmUKNAjrwIoN54KDRJ9SPgolnM5pqXS1wIzniYFEYjEw3XAnYoAqxQqDwS708HxUFemacfAo5SqF5gwnHfBQZBDrEJPAWF4JL8sU8TC68ONTaKnAlMFph6mqasiDskONXna6e7IfvhoFwihppAa/Y29C4hilYFBz9lc72CpRr7txIGRMKeQV5rDC7ANFRIhFRnRdL7FgbKajbb/0hHGPPkcyrhbKYXAn/enyW2SX41mZYiC767aDg/nrElpOBpkzAb8gZV0ifwgBkwrYM233CRjZvx7TtIUAuBMrdgwRqLAF4Dtlpln9g+sHZllUCcrckR/XopfemE2rQWyr1hfrUdrqbwY5UznuG+exioCQo4+iMqXz2jVVo/YFIjreNDqumdZ5hg13QhRdDargjhwoPY/Kj1zDGj3ttksD253snKR9lS2dWjrrHc/GtkTY0TXEhl2RT8J9e34xztkhSfcHWHbqs6+ZelMG+ut8ToSWUlsoXg6W7ny9lLzl8ezH0oLIDwQlBkHKw/PFDcpyXfMP3mdGIAzKilDrs=
+    secure: zKoQlRbPLo1vDZfbilVgf0z3lMRFvhPI7mwbI1ebWxeA9BIQ+4CquIf6y5/TRW2PUY6Faf8dfqIKoh7rnqaMI/XMoVIWlGMV+SQCyBAdffpoOGyRO5NRZrdeV/MqzTT/iOHANrDc9ymdMrpV5lOywaANQZyD96q6UMurGsBwSF3Wp08o3FykxkCqNmAxiU4Wgo3FxObSfJjy40dXr854zFJ8HwlBNo/D7nmuhGCHD3ss6nNreiZE+vcV3SGce+neiesW0AmC6J6w5qacpf2QQf7as+HxuP4b/vo8gSEM8Dl4nfWs+QEdHVgUu3zte2N7Jg/HpjbQD+3bKVdQi+FAPXN1ykbxSCFlbgXN95ds8gPBbXY1mx/OLoUcggQ8OmU1O9STCvT0Huzhj5gPoxZoWVXbkmPuGt6P1kbOBgXrM5R17d+gZbzrZ0MMTjbJp8kv0cjla7iyYk1FKCK1vpYyi2ph0mrNYBFN8vWFm2HFpAGaYBoVNw9PH6pCg36pr/2fg3rCfFD8ef6a6zDhRS5vKCaUWLcH4i8QQ8KDTwuXQVOe7GjiJp0Hx0S6cwad4LR+jiNe26A6eurmtN5K75WLERWjRRrdne2IIIC77xh5Whgs0uAAFiPK1BAZKX2zSKq4tMkiRaIpKz8FQHUaYNJVeZk6MIONK3GOIJoSw5w9Rs0=
