@@ -8,10 +8,12 @@ This proposal is at stage 0 of [the TC39 process](https://tc39.github.io/process
 
 There are four main combinators in the `Promise` landscape.
 
-- `Promise.all` (short-circuits when an input value is rejected) was added in ES2015 ✅
-- `Promise.race` (short-circuits when an input value is settled) was added in ES2015 ✅
-- `Promise.allSettled` (does not short-circuit) is an [active proposal](https://github.com/tc39/proposal-promise-allSettled) ✅
-- `Promise.any` (short-circuits when an input value is fulfilled) is this proposal 🆕
+| name                 | description                                     |                                                                             |
+| -------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| `Promise.allSettled` | does not short-circuit                          | [separate proposal](https://github.com/tc39/proposal-promise-allSettled) 🔜 |
+| `Promise.all`        | short-circuits when an input value is rejected  | added in ES2015 ✅                                                          |
+| `Promise.race`       | short-circuits when an input value is settled   | added in ES2015 ✅                                                          |
+| `Promise.any`        | short-circuits when an input value is fulfilled | this proposal 🆕                                                            |
 
 These are all commonly available in userland promise libraries, and they’re all independently useful, each one serving different use cases.
 
