@@ -1,0 +1,13 @@
+language: node_js
+after_success:
+- $(npm bin)/set-up-ssh --key "${encrypted_4f674fc13bbf_key}" --iv "${encrypted_4f674fc13bbf_iv}"
+  --path-encrypted-key .travis-github-deploy-key.enc
+- $(npm bin)/update-branch --commands 'npm run build' --commit-message "Update gh-pages
+  @ ${TRAVIS_COMMIT}" --directory 'dist' --distribution-branch 'gh-pages' --source-branch
+  'master'
+branches:
+  only:
+  - master
+env:
+  global:
+    secure: uM7xiej3qeRMbce4Z2tpVTaYVDcRR89qGy83BiV9AquB5VjDVEOnYxzUKBZTbCGqpI9ZJhwCq/fyn5hZZbBZS++JlfBEsPBdUzhm4M6bQxHgyGSzaPjWUEjLEZyhBORAwXQgf6w15bgmUKNAjrwIoN54KDRJ9SPgolnM5pqXS1wIzniYFEYjEw3XAnYoAqxQqDwS708HxUFemacfAo5SqF5gwnHfBQZBDrEJPAWF4JL8sU8TC68ONTaKnAlMFph6mqasiDskONXna6e7IfvhoFwihppAa/Y29C4hilYFBz9lc72CpRr7txIGRMKeQV5rDC7ANFRIhFRnRdL7FgbKajbb/0hHGPPkcyrhbKYXAn/enyW2SX41mZYiC767aDg/nrElpOBpkzAb8gZV0ifwgBkwrYM233CRjZvx7TtIUAuBMrdgwRqLAF4Dtlpln9g+sHZllUCcrckR/XopfemE2rQWyr1hfrUdrqbwY5UznuG+exioCQo4+iMqXz2jVVo/YFIjreNDqumdZ5hg13QhRdDargjhwoPY/Kj1zDGj3ttksD253snKR9lS2dWjrrHc/GtkTY0TXEhl2RT8J9e34xztkhSfcHWHbqs6+ZelMG+ut8ToSWUlsoXg6W7ny9lLzl8ezH0oLIDwQlBkHKw/PFDcpyXfMP3mdGIAzKilDrs=
