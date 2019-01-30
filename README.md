@@ -54,6 +54,7 @@ It clearly describes what it does, and there’s precedent for the name `any` in
 - http://bluebirdjs.com/docs/api/promise.any.html
 - https://github.com/m0ppers/promise-any
 - https://github.com/cujojs/when/blob/master/docs/api.md#whenany
+- https://github.com/sindresorhus/p-any
 
 ## Illustrative examples
 
