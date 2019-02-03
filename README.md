@@ -8,12 +8,12 @@ This proposal is at stage 0 of [the TC39 process](https://tc39.github.io/process
 
 There are four main combinators in the `Promise` landscape.
 
-| name                 | description                                     |                                                                             |
-| -------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
-| `Promise.allSettled` | does not short-circuit                          | [separate proposal](https://github.com/tc39/proposal-promise-allSettled) 🔜 |
-| `Promise.all`        | short-circuits when an input value is rejected  | added in ES2015 ✅                                                          |
-| `Promise.race`       | short-circuits when an input value is settled   | added in ES2015 ✅                                                          |
-| `Promise.any`        | short-circuits when an input value is fulfilled | this proposal 🆕                                                            |
+| name                 | resolve value                              | reject value                               | short-circuits?                  | spec                                                                        |
+| -------------------- | ------------------------------------------ | ------------------------------------------ | -------------------------------- | --------------------------------------------------------------------------- |
+| `Promise.allSettled` | array of all settled input values          | (does not reject)                          | (does not short-circuit)         | [separate proposal](https://github.com/tc39/proposal-promise-allSettled) 🔜 |
+| `Promise.race`       | first settled input value, if it resolved  | first settled input value, if it rejected  | when an input value is settled   | added in ES2015 ✅                                                           |
+| `Promise.any`        | first resolved input value                 | array of all input values, if all rejected | when an input value is resolved  | this proposal 🆕                                                             |
+| `Promise.all`        | array of all input values, if all resolved | first rejected input value                 | when an input value is rejected  | added in ES2015 ✅                                                           |
 
 These are all commonly available in userland promise libraries, and they’re all independently useful, each one serving different use cases.
 
