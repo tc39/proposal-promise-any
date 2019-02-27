@@ -27,7 +27,7 @@ These are all commonly available in userland promise libraries, and they’re al
 try {
   const first = await Promise.any(promises);
   // Any of the promises was fulfilled.
-} catch (reasons) {
+} catch (error) {
   // All of the promises were rejected.
 }
 ```
@@ -39,12 +39,13 @@ Promise.any(promises).then(
   (first) => {
     // Any of the promises was fulfilled.
   },
-  (reasons) => {
+  (error) => {
     // All of the promises were rejected.
-    // `reasons` is an array containing the rejection reasons.
   }
 );
 ```
+
+In the above examples, `error` is an `AggregateError`, a new `Error` subclass that groups together individual errors. Every `AggregateError` instance contains a pointer to an array of exceptions.
 
 ### FAQ
 
@@ -57,6 +58,10 @@ It clearly describes what it does, and there’s precedent for the name `any` in
 - https://github.com/m0ppers/promise-any
 - https://github.com/cujojs/when/blob/master/docs/api.md#whenany
 - https://github.com/sindresorhus/p-any
+
+#### Why throw an `AggregateError` instead of an array?
+
+The prevailing practice within the ECMAScript language is to only throw exception types. Existing code in the ecosystem likely relies on the fact that currently, all native exceptions are `Error` subclass instances. Adding a new language feature that can throw a plain `array` would break that invariant, and could be a web compatibility issue.
 
 ## Illustrative examples
 
