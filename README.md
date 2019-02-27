@@ -65,7 +65,22 @@ The prevailing practice within the ECMAScript language is to only throw exceptio
 
 ## Illustrative examples
 
-TODO
+This snippet checks which endpoint responds the fastest, and then logs it.
+
+```js
+Promise.any([
+  fetch('https://v8.dev/').then(() => 'home'),
+  fetch('https://v8.dev/blog').then(() => 'blog'),
+  fetch('https://v8.dev/docs').then(() => 'docs')
+]).then((first) => {
+  // Any of the promises was fulfilled.
+  console.log(first);
+  // → 'home'
+}).catch((error) => {
+  // All of the promises were rejected.
+  console.log(error);
+});
+```
 
 ## TC39 meeting notes
 
