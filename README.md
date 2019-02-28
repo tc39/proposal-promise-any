@@ -61,7 +61,7 @@ It clearly describes what it does, and there’s precedent for the name `any` in
 
 #### Why throw an `AggregateError` instead of an array?
 
-The prevailing practice within the ECMAScript language is to only throw exception types. Existing code in the ecosystem likely relies on the fact that currently, all native exceptions are `Error` subclass instances. Adding a new language feature that can throw a plain `array` would break that invariant, and could be a web compatibility issue.
+The prevailing practice within the ECMAScript language is to only throw exception types. Existing code in the ecosystem likely relies on the fact that currently, all exceptions thrown by built-in methods and syntax are `instanceof Error`. Adding a new language feature that can throw a plain array would break that invariant, and could be a web compatibility issue. Additionally, by using an `Error` instance (or a subclass), a stack trace can be provided — something that’s easy to discard if not needed, but impossible to obtain later if it is needed.
 
 ## Illustrative examples
 
