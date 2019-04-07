@@ -19,7 +19,7 @@ These are all commonly available in userland promise libraries, and they’re al
 
 ## Proposed solution
 
-`Promise.any` accepts an array of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an array of rejection reasons if all of the given promises are rejected.
+`Promise.any` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an array of rejection reasons if all of the given promises are rejected.
 
 ## High-level API
 
