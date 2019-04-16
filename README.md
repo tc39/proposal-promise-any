@@ -84,7 +84,7 @@ Promise.any([
 
 ## TC39 meeting notes
 
-- TODO
+- March 2019
 
 ## Specification
 
