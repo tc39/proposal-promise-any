@@ -1,8 +1,10 @@
 # ECMAScript proposal: `Promise.any`
 
-## Status
+**Author**: Mathias Bynens
 
-This proposal is at stage 1 of [the TC39 process](https://tc39.github.io/process-document/).
+**Champion**: Mathias Bynens
+
+**Stage**: Stage 1 of [the TC39 process](https://tc39.github.io/process-document/).
 
 ## Motivation
 
