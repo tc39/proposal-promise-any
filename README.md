@@ -1,6 +1,6 @@
 # ECMAScript proposal: `Promise.any`
 
-**Author**: Mathias Bynens
+**Author**: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 
 **Champion**: Mathias Bynens
 
