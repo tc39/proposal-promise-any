@@ -8,7 +8,7 @@
 
 ## Motivation
 
-There are four main combinators in the `Promise` landscape.
+There are [four main combinators in the `Promise` landscape](https://v8.dev/features/promise-combinators).
 
 | name                 | description                                     |                                                                             |
 | -------------------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
