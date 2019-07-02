@@ -98,7 +98,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         1. Append *undefined* to _values_.
         1. Let _nextPromise_ be ? Call(_promiseResolve_, _constructor_, &laquo; _nextValue_ &raquo;).
         1. Let _steps_ be the algorithm steps defined in <emu-xref href="#sec-promise.any-reject-element-functions" title></emu-xref>.
-        1. Let _rejectElement_ be ? CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Values]], [[Capability]], [[RemainingElements]] &raquo;).
+        1. Let _rejectElement_ be ! CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Values]], [[Capability]], [[RemainingElements]] &raquo;).
         1. Set _rejectElement_.[[AlreadyCalled]] to a new Record { [[Value]]: *false* }.
         1. Set _rejectElement_.[[Index]] to _index_.
         1. Set _rejectElement_.[[Values]] to _values_.
