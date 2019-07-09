@@ -86,7 +86,7 @@ Promise.any([
 
 ## TC39 meeting notes
 
-- [March 2019](https://github.com/rwaldron/tc39-notes/blob/master/es10/2019-03/mar-27.md#promiseany)
+- [March 2019](https://github.com/rwaldron/tc39-notes/blob/master/meetings/2019-03/mar-27.md#promiseany)
 
 ## Specification
 
