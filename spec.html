@@ -83,17 +83,13 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. Let _remainingElementsCount_ be a new Record { [[Value]]: 1 }.
       1. Let _index_ be 0.
       1. Let _promiseResolve_ be ? Get(_constructor_, `"resolve"`).
-      1. If IsCallable(_promiseResolve_) is *false*, throw a *TypeError* exception.
+      1. If ! IsCallable(_promiseResolve_) is *false*, throw a *TypeError* exception.
       1. Repeat,
         1. Let _next_ be IteratorStep(_iteratorRecord_).
         1. If _next_ is an abrupt completion, set _iteratorRecord_.[[Done]] to *true*.
         1. ReturnIfAbrupt(_next_).
         1. If _next_ is *false*, then
           1. Set _iteratorRecord_.[[Done]] to *true*.
-          1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
-          1. If _remainingElementsCount_.[[Value]] is 0, then
-            1. Let _valuesArray_ be CreateArrayFromList(_values_).
-            1. Perform ? Call(_resultCapability_.[[Resolve]], *undefined*, &laquo; _valuesArray_ &raquo;).
           1. Return _resultCapability_.[[Promise]].
         1. Let _nextValue_ be IteratorValue(_next_).
         1. If _nextValue_ is an abrupt completion, set _iteratorRecord_.[[Done]] to *true*.
@@ -101,14 +97,14 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         1. Append *undefined* to _values_.
         1. Let _nextPromise_ be ? Call(_promiseResolve_, _constructor_, &laquo; _nextValue_ &raquo;).
         1. Let _steps_ be the algorithm steps defined in <emu-xref href="#sec-promise.any-reject-element-functions" title></emu-xref>.
-        1. Let _rejectElement_ be CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Values]], [[Capability]], [[RemainingElements]] &raquo;).
+        1. Let _rejectElement_ be ! CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Values]], [[Capability]], [[RemainingElements]] &raquo;).
         1. Set _rejectElement_.[[AlreadyCalled]] to a new Record { [[Value]]: *false* }.
         1. Set _rejectElement_.[[Index]] to _index_.
         1. Set _rejectElement_.[[Values]] to _values_.
         1. Set _rejectElement_.[[Capability]] to _resultCapability_.
         1. Set _rejectElement_.[[RemainingElements]] to _remainingElementsCount_.
         1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] + 1.
-        1. Perform ? Invoke(_nextPromise_, `"then"`, &laquo; _resultCapability_, _rejectElement_[[Reject]] &raquo;).
+        1. Perform ? Invoke(_nextPromise_, `"then"`, &laquo; _resultCapability_.[[Resolve]], _rejectElement_ &raquo;).
         1. Increase _index_ by 1.
     </emu-alg>
   </emu-clause>
