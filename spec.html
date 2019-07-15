@@ -79,10 +79,10 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         1. Append *undefined* to _errors_.
         1. Let _nextPromise_ be ? Call(_promiseResolve_, _constructor_, &laquo; _nextValue_ &raquo;).
         1. Let _steps_ be the algorithm steps defined in <emu-xref href="#sec-promise.any-reject-element-functions" title></emu-xref>.
-        1. Let _rejectElement_ be ! CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Values]], [[Capability]], [[RemainingElements]] &raquo;).
+        1. Let _rejectElement_ be ! CreateBuiltinFunction(_steps_, &laquo; [[AlreadyCalled]], [[Index]], [[Errors]], [[Capability]], [[RemainingElements]] &raquo;).
         1. Set _rejectElement_.[[AlreadyCalled]] to a new Record { [[Value]]: *false* }.
         1. Set _rejectElement_.[[Index]] to _index_.
-        1. Set _rejectElement_.[[Values]] to _errors_.
+        1. Set _rejectElement_.[[Errors]] to _errors_.
         1. Set _rejectElement_.[[Capability]] to _resultCapability_.
         1. Set _rejectElement_.[[RemainingElements]] to _remainingElementsCount_.
         1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] + 1.
@@ -93,7 +93,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 
   <emu-clause id="sec-promise.any-reject-element-functions">
     <h1>`Promise.any` Reject Element Functions</h1>
-    <p>A `Promise.any` reject element function is an anonymous built-in function that is used to reject a specific `Promise.any` element. Each `Promise.any` reject element function has [[Index]], [[Values]], [[Capability]], [[RemainingElements]], and [[AlreadyCalled]] internal slots.</p>
+    <p>A `Promise.any` reject element function is an anonymous built-in function that is used to reject a specific `Promise.any` element. Each `Promise.any` reject element function has [[Index]], [[Errors]], [[Capability]], [[RemainingElements]], and [[AlreadyCalled]] internal slots.</p>
     <p>When a `Promise.any` reject element function is called with argument _x_, the following steps are taken:</p>
     <emu-alg>
       1. Let _F_ be the active function object.
@@ -101,14 +101,14 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. If _alreadyCalled_.[[Value]] is *true*, return *undefined*.
       1. Set _alreadyCalled_.[[Value]] to *true*.
       1. Let _index_ be _F_.[[Index]].
-      1. Let _values_ be _F_.[[Values]].
+      1. Let _errors_ be _F_.[[Errors]].
       1. Let _promiseCapability_ be _F_.[[Capability]].
       1. Let _remainingElementsCount_ be _F_.[[RemainingElements]].
-      1. Set _values_[_index_] to _x_.
+      1. Set _errors_[_index_] to _x_.
       1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
       1. If _remainingElementsCount_.[[Value]] is 0, then
-        1. Let _valuesArray_ be CreateArrayFromList(_values_).
-        1. Return ? Call(_promiseCapability_.[[Reject]], *undefined*, &laquo; _valuesArray_ &raquo;).
+        1. Let _errorsArray_ be CreateArrayFromList(_errors_).
+        1. Return ? Call(_promiseCapability_.[[Reject]], *undefined*, &laquo; _errorsArray_ &raquo;).
       1. Return *undefined*.
     </emu-alg>
     <p>The `"length"` property of a `Promise.any` resolve element function is 1.</p>
