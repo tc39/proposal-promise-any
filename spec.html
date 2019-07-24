@@ -74,6 +74,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
           1. Set _iteratorRecord_.[[Done]] to *true*.
           1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
           1. If _remainingElementsCount_.[[Value]] is 0, then
+            1. Let _errorsArray_ be CreateArrayFromList(_errors_).
             1. Let _error_ be a newly created `AggregateError` object.
             1. Perform ! CreateDataProperty ( _error_, `"errors"`, _errorsArray_ ).
             1. Return ThrowCompletion ( _error_ ).
@@ -112,7 +113,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. Set _errors_[_index_] to _x_.
       1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
       1. If _remainingElementsCount_.[[Value]] is 0, then
-        1. Let _errorsArray_ be CreateArrayFromList(_errors_)
+        1. Let _errorsArray_ be CreateArrayFromList(_errors_).
         1. Let _error_ be a newly created `AggregateError` object.
         1. Perform ! CreateDataProperty ( _error_, `"errors"`, _errorsArray_ ).
         1. Return ThrowCompletion ( _error_ ).
