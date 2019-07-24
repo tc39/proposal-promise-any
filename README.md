@@ -4,7 +4,7 @@
 
 **Champion**: Mathias Bynens
 
-**Stage**: Stage 1 of [the TC39 process](https://tc39.github.io/process-document/).
+**Stage**: Stage 2 of [the TC39 process](https://tc39.github.io/process-document/).
 
 ## Motivation
 
