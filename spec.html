@@ -138,7 +138,8 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
     1. Let _errorsIterator_ be ? GetMethod(_errors_, @@iterator).
     1. Let _errorsList_ ? IterableToList(_errors_, _errorsIterator_).
     1. Let _errorsArray_ be CreateArrayFromList(_errorsList_).
-    1. Perform ! CreateDataProperty(_O_, `"errors"`, _errorsArray_).
+    1. Let _errorsDesc_ be the PropertyDescriptor { [[Value]]: _errorsArray_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
+    1. Perform ! DefinePropertyOrThrow ( _O_, `"errors"`, _errorsDesc_ ).
     1. If _message_ is not _undefined_, then
       1. Let msg be ? ToString(_message_).
       1. Let msgDesc be the PropertyDescriptor { [[Value]]: _msg_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
