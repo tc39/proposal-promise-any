@@ -12,7 +12,7 @@ There are [four main combinators in the `Promise` landscape](https://v8.dev/feat
 
 | name                 | description                                     |                    |
 | -------------------- | ----------------------------------------------- | ------------------ |
-| `Promise.allSettled` | does not short-circuit                          | added in ES2015 ✅ |
+| `Promise.allSettled` | does not short-circuit                          | added in ES2020 ✅ |
 | `Promise.all`        | short-circuits when an input value is rejected  | added in ES2015 ✅ |
 | `Promise.race`       | short-circuits when an input value is settled   | added in ES2015 ✅ |
 | `Promise.any`        | short-circuits when an input value is fulfilled | this proposal 🆕   |
