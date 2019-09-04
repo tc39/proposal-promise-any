@@ -130,12 +130,44 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
   </emu-alg>
 </emu-clause>
 
+<emu-clause id="sec-well-known-intrinsic-objects">
+  <h1>Well-Known Intrinsic Objects</h1>
+  <emu-table id="table-7" caption="Well-Known Intrinsic Objects">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Intrinsic Name
+          </th>
+          <th>
+            Global Name
+          </th>
+          <th>
+            ECMAScript Language Association
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <ins>%AggregateError%</ins>
+          </td>
+          <td>
+            <ins>`AggregateError`</ins>
+          </td>
+          <td>
+            <ins>The `AggregateError` constructor (<emu-xref href="#sec-native-error-types-used-in-this-standard-aggregateerror"></emu-xref>)</ins>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </emu-table>
+</emu-clause>
+
 <emu-clause id="sec-native-error-types-used-in-this-standard-aggregateerror">
   <h1>AggregateError ( errors, message )</h1>
   <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
   <emu-alg>
     1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-    1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateErrorPrototype%"`, « [[ErrorData]] »).
+    1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
     1. Let _errorsIterator_ be ? GetMethod(_errors_, @@iterator).
     1. Let _errorsList_ ? IterableToList(_errors_, _errorsIterator_).
     1. Let _errorsArray_ be CreateArrayFromList(_errorsList_).
