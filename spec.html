@@ -176,3 +176,23 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
     1. Return _O_.
   </emu-alg>
 </emu-clause>
+
+<emu-clause id="sec-iterabletolist" aoid="IterableToList">
+  <h1>Runtime Semantics: IterableToList ( _items_ <ins>[ ,</ins> _method_<ins> ]</ins> )</h1>
+  <p>The abstract operation IterableToList performs the following steps:</p>
+  <emu-alg>
+    1. <del>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~, _method_).</del>
+    1. <ins>If _method_ is present, then</ins>
+      1. <ins>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~, _method_).</ins>
+    1. <ins>Else,</ins>
+      1. <ins>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~).</ins>
+    1. Let _values_ be a new empty List.
+    1. Let _next_ be *true*.
+    1. Repeat, while _next_ is not *false*
+      1. Set _next_ to ? IteratorStep(_iteratorRecord_).
+      1. If _next_ is not *false*, then
+        1. Let _nextValue_ be ? IteratorValue(_next_).
+        1. Append _nextValue_ to the end of the List _values_.
+    1. Return _values_.
+  </emu-alg>
+</emu-clause>
