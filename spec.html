@@ -130,21 +130,69 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
   </emu-alg>
 </emu-clause>
 
+<emu-clause id="sec-well-known-intrinsic-objects">
+  <h1>Well-Known Intrinsic Objects</h1>
+  <emu-table id="table-7" caption="Well-Known Intrinsic Objects">
+    <table>
+      <tbody>
+        <tr>
+          <th>
+            Intrinsic Name
+          </th>
+          <th>
+            Global Name
+          </th>
+          <th>
+            ECMAScript Language Association
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <ins>%AggregateError%</ins>
+          </td>
+          <td>
+            <ins>`AggregateError`</ins>
+          </td>
+          <td>
+            <ins>The `AggregateError` constructor (<emu-xref href="#sec-native-error-types-used-in-this-standard-aggregateerror"></emu-xref>)</ins>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </emu-table>
+</emu-clause>
+
 <emu-clause id="sec-native-error-types-used-in-this-standard-aggregateerror">
   <h1>AggregateError ( errors, message )</h1>
   <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
   <emu-alg>
     1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-    1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateErrorPrototype%"`, « [[ErrorData]] »).
-    1. Let _errorsIterator_ be ? GetMethod(_errors_, @@iterator).
-    1. Let _errorsList_ ? IterableToList(_errors_, _errorsIterator_).
-    1. Let _errorsArray_ be CreateArrayFromList(_errorsList_).
-    1. Let _errorsDesc_ be the PropertyDescriptor { [[Value]]: _errorsArray_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
-    1. Perform ! DefinePropertyOrThrow ( _O_, `"errors"`, _errorsDesc_ ).
+    1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
+    1. Let _errorsArray_ be ! CreateArrayFromList(? IterableToList(_errors_)).
+    1. Perform ! CreateMethodProperty(_O_, `"errors"`, _errorsArray_).
     1. If _message_ is not _undefined_, then
       1. Let msg be ? ToString(_message_).
-      1. Let msgDesc be the PropertyDescriptor { [[Value]]: _msg_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
-      1. Perform ! DefinePropertyOrThrow(_O_, `"message"`, _msgDesc_).
+      1. Perform ! CreateMethodProperty(_O_, `"message"`, _msg_).
     1. Return _O_.
+  </emu-alg>
+</emu-clause>
+
+<emu-clause id="sec-iterabletolist" aoid="IterableToList">
+  <h1>Runtime Semantics: IterableToList ( _items_ <ins>[ ,</ins> _method_<ins> ]</ins> )</h1>
+  <p>The abstract operation IterableToList performs the following steps:</p>
+  <emu-alg>
+    1. <del>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~, _method_).</del>
+    1. <ins>If _method_ is present, then</ins>
+      1. <ins>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~, _method_).</ins>
+    1. <ins>Else,</ins>
+      1. <ins>Let _iteratorRecord_ be ? GetIterator(_items_, ~sync~).</ins>
+    1. Let _values_ be a new empty List.
+    1. Let _next_ be *true*.
+    1. Repeat, while _next_ is not *false*
+      1. Set _next_ to ? IteratorStep(_iteratorRecord_).
+      1. If _next_ is not *false*, then
+        1. Let _nextValue_ be ? IteratorValue(_next_).
+        1. Append _nextValue_ to the end of the List _values_.
+    1. Return _values_.
   </emu-alg>
 </emu-clause>
