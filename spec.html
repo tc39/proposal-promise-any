@@ -37,6 +37,139 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
   <p>`Promise.any()` accepts an array of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an array of rejection reasons if all of the given promises are rejected.</p>
 </emu-intro>
 
+<emu-clause id="sec-well-known-intrinsic-objects">
+  <h1>Well-Known Intrinsic Objects</h1>
+  <p>Well-known intrinsics are built-in objects that are explicitly referenced by the algorithms of this specification and which usually have realm-specific identities. Unless otherwise specified each intrinsic object actually corresponds to a set of similar objects, one per realm.</p>
+  <p>Within this specification a reference such as %name% means the intrinsic object, associated with the current realm, corresponding to the name. Determination of the current realm and its intrinsics is described in <emu-xref href="#sec-execution-contexts"></emu-xref>. The well-known intrinsics are listed in <emu-xref href="#table-7"></emu-xref>.</p>
+  <emu-table id="table-7" caption="Well-Known Intrinsic Objects">
+    <table>
+      <tbody>
+      <tr>
+        <th>
+          Intrinsic Name
+        </th>
+        <th>
+          Global Name
+        </th>
+        <th>
+          ECMAScript Language Association
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <ins>%AggregateError%</ins>
+        </td>
+        <td>
+          <ins>`AggregateError`</ins>
+        </td>
+        <td>
+          <ins>The `AggregateError` constructor (<emu-xref href="#sec-aggregateerror-constructor"></emu-xref>)</ins>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ins>%AggregateError.prototype%</ins>
+        </td>
+        <td>
+          <ins>`AggregateError.prototype`</ins>
+        </td>
+        <td>
+          <ins>The initial value of the `prototype` data property of %AggregateError%</ins>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </emu-table>
+</emu-clause>
+
+<emu-clause id="sec-error-objects">
+  <h1>Error Objects</h1>
+  <p>Instances of Error objects are thrown as exceptions when runtime errors occur. The Error objects may also serve as base objects for user-defined exception classes.</p>
+
+  <emu-clause id="sec-aggregateerror-object-structure">
+    <h1>_AggregateError_ Object Structure</h1>
+    <p>TODO</p>
+
+    <emu-clause id="sec-aggregateerror-constructors">
+      <h1>The _AggregateError_ Constructors</h1>
+      <p>Each _AggregateError_ constructor:</p>
+      <ul>
+        <li>TODO</li>
+      </ul>
+
+      <emu-clause id="sec-aggregateerror">
+        <h1>AggregateError ( _errors_, _message_ )</h1>
+        <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
+        <emu-alg>
+          1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
+          1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
+          1. Let _errorsIterator_ be ? GetMethod(_errors_, @@iterator).
+          1. Let _errorsList_ ? IterableToList(_errors_, _errorsIterator_).
+          1. Let _errorsArray_ be CreateArrayFromList(_errorsList_).
+          1. Perform ! CreateDataProperty(_O_, `"errors"`, _errorsArray_).
+          1. If _message_ is not _undefined_, then
+          1. Let msg be ? ToString(_message_).
+          1. Let msgDesc be the PropertyDescriptor { [[Value]]: _msg_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
+          1. Perform ! DefinePropertyOrThrow(_O_, `"message"`, _msgDesc_).
+          1. Return _O_.
+        </emu-alg>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="sec-properties-of-the-aggregateerror-constructors">
+      <h1>Properties of the _AggregateError_ Constructors</h1>
+      <p>Each _AggregateError_ constructor:</p>
+      <ul>
+        <li>has a [[Prototype]] internal slot whose value is the intrinsic object %Error%.</li>
+        <li>has a `name` property whose value is the String value `"<var>AggregateError</var>"`.</li>
+        <li>has an `errors` property whose value is TODO</li>
+        <li>has the following properties:</li>
+      </ul>
+
+      <emu-clause id="sec-aggregateerror.prototype">
+        <h1>AggregateError.prototype</h1>
+        <p>The initial value of <code><var>AggregateError</var>.prototype</code> is a _AggregateError_ prototype object (<emu-xref href="#sec-properties-of-the-aggregateerror-prototype-objects"></emu-xref>). Each _AggregateError_ constructor has a distinct prototype object.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="sec-properties-of-the-aggregateerror-prototype-objects">
+      <h1>Properties of the _AggregateError_ Prototype Objects</h1>
+      <p>Each _AggregateError_ prototype object:</p>
+      <ul>
+        <li>is an ordinary object.</li>
+        <li>is not an Error instance and does not have an [[ErrorData]] internal slot.</li>
+        <li>has a [[Prototype]] internal slot whose value is the intrinsic object %Error.prototype%.</li>
+      </ul>
+
+      <emu-clause id="sec-aggregateerror.prototype.constructor">
+        <h1>_AggregateError_.prototype.constructor</h1>
+        <p>The initial value of the `constructor` property of the prototype for a given _AggregateError_ constructor is the corresponding intrinsic object %_AggregateError_% (<emu-xref href="#sec-aggregateerror-constructors"></emu-xref>).</p>
+      </emu-clause>
+
+      <emu-clause id="sec-aggregateerror.prototype.message">
+        <h1>_AggregateError_.prototype.message</h1>
+        <p>The initial value of the `message` property of the prototype for a given _AggregateError_ constructor is the empty String.</p>
+      </emu-clause>
+
+      <emu-clause id="sec-aggregateerror.prototype.name">
+        <h1>_AggregateError_.prototype.name</h1>
+        <p>The initial value of the `name` property of the prototype for a given _AggregateError_ constructor is the String value consisting of the name of the constructor (the name used instead of _AggregateError_).</p>
+      </emu-clause>
+
+      <emu-clause id="sec-aggregateerror.prototype.errors">
+        <h1>_AggregateError_.prototype.errors</h1>
+        <p>The initial value of the `errors` property of the prototype for a given _AggregateError_ constructor is an empty Array.</p>
+      </emu-clause>
+    </emu-clause>
+
+    <emu-clause id="sec-properties-of-aggregateerror-instances">
+      <h1>Properties of _AggregateError_ Instances</h1>
+      <p>_AggregateError_ instances are ordinary objects that inherit properties from their _AggregateError_ prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) to identify Error or _AggregateError_ instances.</p>
+    </emu-clause>
+  </emu-clause>
+</emu-clause>
+
 <emu-clause id="sec-promise.any">
   <h1>Promise.any ( _iterable_ )</h1>
   <p>The `any` function returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an array of rejection reasons if all of the given promises are rejected. It resolves all elements of the passed iterable to promises as it runs this algorithm.</p>
@@ -127,53 +260,6 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
     1. Let _errorsDesc_ be the PropertyDescriptor { [[Value]]: _errorsArray_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
     1. Perform ! DefinePropertyOrThrow ( _error_, `"errors"`, _errorsDesc_ ).
     1. Return ThrowCompletion ( _error_ ).
-  </emu-alg>
-</emu-clause>
-
-<emu-clause id="sec-well-known-intrinsic-objects">
-  <h1>Well-Known Intrinsic Objects</h1>
-  <emu-table id="table-7" caption="Well-Known Intrinsic Objects">
-    <table>
-      <tbody>
-        <tr>
-          <th>
-            Intrinsic Name
-          </th>
-          <th>
-            Global Name
-          </th>
-          <th>
-            ECMAScript Language Association
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <ins>%AggregateError%</ins>
-          </td>
-          <td>
-            <ins>`AggregateError`</ins>
-          </td>
-          <td>
-            <ins>The `AggregateError` constructor (<emu-xref href="#sec-native-error-types-used-in-this-standard-aggregateerror"></emu-xref>)</ins>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </emu-table>
-</emu-clause>
-
-<emu-clause id="sec-native-error-types-used-in-this-standard-aggregateerror">
-  <h1>AggregateError ( errors, message )</h1>
-  <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
-  <emu-alg>
-    1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-    1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
-    1. Let _errorsArray_ be ! CreateArrayFromList(? IterableToList(_errors_)).
-    1. Perform ! CreateMethodProperty(_O_, `"errors"`, _errorsArray_).
-    1. If _message_ is not _undefined_, then
-      1. Let msg be ? ToString(_message_).
-      1. Perform ! CreateMethodProperty(_O_, `"message"`, _msg_).
-    1. Return _O_.
   </emu-alg>
 </emu-clause>
 
