@@ -75,6 +75,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         </td>
         <td>
           <ins>The initial value of the `prototype` data property of %AggregateError%</ins>
+          <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
         </td>
       </tr>
       </tbody>
@@ -125,7 +126,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       </emu-clause>
     </emu-clause>
 
-    <emu-clause id="sec-properties-of-the-aggregateerror-constructors">
+    <emu-clause id="sec-properties-of-the-aggregate-error-constructors">
       <h1>Properties of the _AggregateError_ Constructor</h1>
       <p>The _AggregateError_ constructor:</p>
       <ul>
@@ -136,12 +137,12 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 
       <emu-clause id="sec-aggregate-error.prototype">
         <h1>AggregateError.prototype</h1>
-        <p>The initial value of <code><var>AggregateError</var>.prototype</code> is a _AggregateError_ prototype object (<emu-xref href="#sec-properties-of-the-aggregateerror-prototype-objects"></emu-xref>).</p>
+        <p>The initial value of `AggregateError.prototype`  is the intrinsic object %AggregateErrorPrototype%.</p>
         <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
       </emu-clause>
     </emu-clause>
 
-    <emu-clause id="sec-properties-of-the-aggregateerror-prototype-objects">
+    <emu-clause id="sec-properties-of-the-aggregate-error-prototype-objects">
       <h1>Properties of the _AggregateError_ Prototype Object</h1>
       <p>The _AggregateError_ prototype object:</p>
       <ul>
@@ -166,7 +167,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       </emu-clause>
     </emu-clause>
 
-    <emu-clause id="sec-properties-of-aggregateerror-instances">
+    <emu-clause id="sec-properties-of-aggregate-error-instances">
       <h1>Properties of _AggregateError_ Instances</h1>
       <p>_AggregateError_ instances are ordinary objects that inherit properties from their _AggregateError_ prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) to identify Error, _NativeError_, or _AggregateError_ instances.</p>
     </emu-clause>
