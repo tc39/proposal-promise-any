@@ -94,7 +94,8 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       <h1>The _AggregateError_ Constructors</h1>
       <p>Each _AggregateError_ constructor:</p>
       <ul>
-        <li>TODO</li>
+        <li>creates and initializes a new _AggregateError_ object when called as a function rather than as a constructor. A call of the object as a function is equivalent to calling it as a constructor with the same arguments. Thus the function call <code><var>AggregateError</var>(&hellip;)</code> is equivalent to the object creation expression <code>new <var>AggregateError</var>(&hellip;)</code> with the same arguments.</li>
+        <li>is designed to be subclassable. It may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified _AggregateError_ behaviour must include a `super` call to the _AggregateError_ constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
       </ul>
 
       <emu-clause id="sec-aggregateerror">
