@@ -63,7 +63,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
           <ins>`AggregateError`</ins>
         </td>
         <td>
-          <ins>The `AggregateError` constructor (<emu-xref href="#sec-aggregateerror-constructor"></emu-xref>)</ins>
+          <ins>The `AggregateError` constructor (<emu-xref href="#sec-aggregate-error-constructor"></emu-xref>)</ins>
         </td>
       </tr>
       <tr>
@@ -85,12 +85,24 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 <emu-clause id="sec-error-objects">
   <h1>Error Objects</h1>
   <p>Instances of Error objects are thrown as exceptions when runtime errors occur. The Error objects may also serve as base objects for user-defined exception classes.</p>
+  <p>When an ECMAScript implementation detects a runtime error, it throws a new instance of one of the _NativeError_ objects defined in <emu-xref href="#sec-native-error-types-used-in-this-standard"></emu-xref> or a new instance of %AggregateError%. Each of these objects has the structure described below, differing only in the name used as the constructor name instead of _NativeError_, in the `name` property of the prototype object, in the implementation-defined `message` property of the prototype object, and in the presence of the %AggregateError%-specific `errors` property.</p>
 
-  <emu-clause id="sec-aggregateerror-object-structure">
+  <emu-clause id="sec-nativeerror-object-structure">
+    <h1>_NativeError_ Object Structure</h1>
+    <p>For each error object, references to _NativeError_ in the definition should be replaced with the appropriate error object name from <emu-xref href="#sec-native-error-types-used-in-this-standard"></emu-xref>.</p>
+
+    <emu-clause id="sec-properties-of-nativeerror-instances">
+      <h1>Properties of _NativeError_ Instances</h1>
+      <p>_NativeError_ instances are ordinary objects that inherit properties from their _NativeError_ prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) to identify Error, _NativeError_, or _AggregateError_ instances.</p>
+    </emu-clause>
+  </emu-clause>
+
+
+  <emu-clause id="sec-aggregate-error-object-structure">
     <h1>_AggregateError_ Object Structure</h1>
-    <p>TODO</p>
+    <p>For each error object, references to _AggregateError_ in the definition should be replaced with the appropriate error object name from <emu-xref href="#sec-aggregate-error-types-used-in-this-standard"></emu-xref>.</p>
 
-    <emu-clause id="sec-aggregateerror-constructor">
+    <emu-clause id="sec-aggregate-error-constructor">
       <h1>The _AggregateError_ Constructor</h1>
       <p>The _AggregateError_ constructor:</p>
       <ul>
@@ -98,7 +110,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <li>is designed to be subclassable. It may be used as the value of an `extends` clause of a class definition. Subclass constructors that intend to inherit the specified _AggregateError_ behaviour must include a `super` call to the _AggregateError_ constructor to create and initialize subclass instances with an [[ErrorData]] internal slot.</li>
       </ul>
 
-      <emu-clause id="sec-aggregateerror">
+      <emu-clause id="sec-aggregate-error">
         <h1>AggregateError ( _errors_, _message_ )</h1>
         <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
         <emu-alg>
@@ -126,7 +138,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <li>has the following properties:</li>
       </ul>
 
-      <emu-clause id="sec-aggregateerror.prototype">
+      <emu-clause id="sec-aggregate-error.prototype">
         <h1>AggregateError.prototype</h1>
         <p>The initial value of <code><var>AggregateError</var>.prototype</code> is a _AggregateError_ prototype object (<emu-xref href="#sec-properties-of-the-aggregateerror-prototype-objects"></emu-xref>).</p>
         <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
@@ -142,22 +154,22 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <li>has a [[Prototype]] internal slot whose value is the intrinsic object %Error.prototype%.</li>
       </ul>
 
-      <emu-clause id="sec-aggregateerror.prototype.constructor">
+      <emu-clause id="sec-aggregate-error.prototype.constructor">
         <h1>_AggregateError_.prototype.constructor</h1>
-        <p>The initial value of the `AggregateError.prototype.constructor` is the intrinsic object %_AggregateError_% (<emu-xref href="#sec-aggregateerror-constructors"></emu-xref>).</p>
+        <p>The initial value of the `AggregateError.prototype.constructor` is the intrinsic object %_AggregateError_% (<emu-xref href="#sec-aggregate-error-constructors"></emu-xref>).</p>
       </emu-clause>
 
-      <emu-clause id="sec-aggregateerror.prototype.message">
+      <emu-clause id="sec-aggregate-error.prototype.message">
         <h1>_AggregateError_.prototype.message</h1>
         <p>The initial value of the `AggregateError.prototypemessage` is the empty String.</p>
       </emu-clause>
 
-      <emu-clause id="sec-aggregateerror.prototype.name">
+      <emu-clause id="sec-aggregate-error.prototype.name">
         <h1>_AggregateError_.prototype.name</h1>
         <p>The initial value of the `AggregateError.prototypename` is the String value consisting of the name of the constructor (the name used instead of _AggregateError_).</p>
       </emu-clause>
 
-      <emu-clause id="sec-aggregateerror.prototype.errors">
+      <emu-clause id="sec-aggregate-error.prototype.errors">
         <h1>_AggregateError_.prototype.errors</h1>
         <p>The initial value of the `AggregateError.prototypeerrors` is an empty Array.</p>
       </emu-clause>
