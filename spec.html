@@ -165,6 +165,18 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <h1>_AggregateError_.prototype.errors</h1>
         <p>The initial value of `AggregateError.prototype.errors` is an empty Array.</p>
       </emu-clause>
+
+      <emu-clause id="sec-aggregate-error.prototype.toString">
+        <h1>_AggregateError_.prototype.toString ( )</h1>
+        <p>The following steps are taken:</p>
+        <emu-alg>
+          1. Let _O_ be the *this* value.
+          1. If Type(_O_) is not Object, throw a *TypeError* exception.
+          1. Let _errorsNum_ be ? ToLength(? Get(obj, "length")).
+          1. Let _errorsNumString_ ! ToString(_errorsNum_).
+          1. Return string-concatenation of _errorsNumString_ and " errors".
+        </emu-alg>
+      </emu-clause>
     </emu-clause>
 
     <emu-clause id="sec-properties-of-aggregate-error-instances">
