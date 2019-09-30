@@ -88,7 +88,8 @@ Promise.any([
 
 - [March 2019](https://github.com/rwaldron/tc39-notes/blob/master/meetings/2019-03/mar-27.md#promiseany)
 - [June 2019](https://github.com/rwaldron/tc39-notes/blob/master/meetings/2019-06/june-5.md#promiseany)
-- July 2019
+- [July 2019](https://github.com/tc39/tc39-notes/blob/master/meetings/2019-07/july-24.md#promiseany)
+- October 2019
 
 ## Specification
 
