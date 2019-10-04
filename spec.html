@@ -119,9 +119,9 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
         <emu-alg>
           1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-          1. Let O be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
-          1. Let _errorsArray_ be ! CreateArrayFromList(? IterableToList(_errors_)).
-          1. Perform ! CreateMethodProperty(_O_, `"errors"`, _errorsArray_).
+          1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]], [[AggregateErrors]] »).
+          1. Let _errorsList_ be ? IterableToList(_errors_).
+          1. Set _O_.[[AggregateErrors]] to _errorsList_.
           1. If _message_ is not _undefined_, then
             1. Let msg be ? ToString(_message_).
             1. Perform ! CreateMethodProperty(_O_, `"message"`, _msg_).
@@ -152,6 +152,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       <ul>
         <li>is an ordinary object.</li>
         <li>is not an Error instance and does not have an [[ErrorData]] internal slot.</li>
+        <li>is not an AggregateError instance and does not have an [[AggregateErrors]] internal slot.</li>
         <li>has a [[Prototype]] internal slot whose value is the intrinsic object %Error.prototype%.</li>
       </ul>
 
@@ -168,6 +169,18 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       <emu-clause id="sec-aggregate-error.prototype.name">
         <h1>_AggregateError_.prototype.name</h1>
         <p>The initial value of `AggregateError.prototype.name` is `"AggregateError"`.</p>
+      </emu-clause>
+
+      <emu-clause id="sec-aggregate-error.prototype.name">
+        <h1>get _AggregateError_.prototype.errors</h1>
+        <p>`AggregateError.prototype.errors` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps:</p>
+        <emu-alg>
+          1. Let _E_ be the *this* value.
+          1. If Type(_E_) is not Object, throw a *TypeError* exception.
+          1. If _E_ does not have an [[ErrorData]] internal slot, throw a *TypeError* exception.
+          1. If _E_ does not have an [[AggregateErrors]] internal slot, throw a *TypeError* exception.
+          1. Return ! CreateArrayFromList(_E_.[[AggregateErrors]]).
+        </emu-alg>
       </emu-clause>
 
       <emu-clause id="sec-aggregate-error.prototype.toString">
