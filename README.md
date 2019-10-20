@@ -98,4 +98,4 @@ Promise.any([
 
 ## Implementations
 
-- none yet
+- [core-js](https://github.com/zloirock/core-js#promiseany)
