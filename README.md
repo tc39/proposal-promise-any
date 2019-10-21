@@ -98,4 +98,5 @@ Promise.any([
 
 ## Implementations
 
-- [Polyfill](https://github.com/zloirock/core-js#promiseany)
+- [es-shims](https://www.npmjs.com/package/promise.any)
+- [core-js](https://github.com/zloirock/core-js#promiseany)
