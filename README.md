@@ -98,4 +98,4 @@ Promise.any([
 
 ## Implementations
 
-- none yet
+- [Polyfill](https://github.com/zloirock/core-js#promiseany)
