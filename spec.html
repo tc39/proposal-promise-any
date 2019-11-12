@@ -276,10 +276,8 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
   <p>The abstract operation ThrowAggregateError(_errors_) creates and throws an instance of AggregateError</p>
   <emu-alg>
     1. Assert: _errors_ is a List whose elements are all ECMAScript language values.
-    1. Let _errorsArray_ be CreateArrayFromList(_errors_).
     1. Let _error_ be a newly created `AggregateError` object.
-    1. Let _errorsDesc_ be the PropertyDescriptor { [[Value]]: _errorsArray_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
-    1. Perform ! DefinePropertyOrThrow ( _error_, `"errors"`, _errorsDesc_ ).
+    1. Set _error_.[[AggregateErrors]] to _errors_.
     1. Return ThrowCompletion ( _error_ ).
   </emu-alg>
 </emu-clause>
