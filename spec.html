@@ -264,7 +264,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. Set _errors_[_index_] to _x_.
       1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
       1. If _remainingElementsCount_.[[Value]] is 0, then
-        1. Perform ? ThrowAggregateError(_errors_).
+        1. Return ? Call(_promiseCapability_.[[Resolve]], undefined, &laquo; ThrowAggregateError(_errors_) &raquo;).
       1. Return *undefined*.
     </emu-alg>
     <p>The `"length"` property of a `Promise.any` resolve element function is 1.</p>
