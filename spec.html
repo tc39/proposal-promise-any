@@ -230,7 +230,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
           1. If _remainingElementsCount_.[[Value]] is 0, then
             1. Let _error_ be a newly created `AggregateError` object.
             1. Set _error_.[[AggregateErrors]] to _errors_.
-            1. Return ThrowCompletion ( _error_ ).
+            1. Return ThrowCompletion(_error_).
           1. Return _resultCapability_.[[Promise]].
         1. Let _nextValue_ be IteratorValue(_next_).
         1. If _nextValue_ is an abrupt completion, set _iteratorRecord_.[[Done]] to *true*.
