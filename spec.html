@@ -228,7 +228,9 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
           1. Set _iteratorRecord_.[[Done]] to *true*.
           1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
           1. If _remainingElementsCount_.[[Value]] is 0, then
-            1. Perform ? ThrowAggregateError(_errors_).
+            1. Let _error_ be a newly-created `AggregateError` object.
+            1. Set _error_.[[AggregateErrors]] to _errors_.
+            1. Return ThrowCompletion(_error_).
           1. Return _resultCapability_.[[Promise]].
         1. Let _nextValue_ be IteratorValue(_next_).
         1. If _nextValue_ is an abrupt completion, set _iteratorRecord_.[[Done]] to *true*.
@@ -264,22 +266,13 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. Set _errors_[_index_] to _x_.
       1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
       1. If _remainingElementsCount_.[[Value]] is 0, then
-        1. Perform ? ThrowAggregateError(_errors_).
+        1. Let _error_ be a newly-created `AggregateError` object.
+        1. Set _error_.[[AggregateErrors]] to _errors_.
+        1. Return ? Call(_promiseCapability_.[[Reject]], undefined, &laquo; _error_ &raquo;).
       1. Return *undefined*.
     </emu-alg>
     <p>The `"length"` property of a `Promise.any` resolve element function is 1.</p>
   </emu-clause>
-</emu-clause>
-
-<emu-clause id="sec-throwaggregateerror">
-  <h1>ThrowAggregateError ( _errors_ )</h1>
-  <p>The abstract operation ThrowAggregateError(_errors_) creates and throws an instance of AggregateError</p>
-  <emu-alg>
-    1. Assert: _errors_ is a List whose elements are all ECMAScript language values.
-    1. Let _error_ be a newly created `AggregateError` object.
-    1. Set _error_.[[AggregateErrors]] to _errors_.
-    1. Return ThrowCompletion ( _error_ ).
-  </emu-alg>
 </emu-clause>
 
 <emu-clause id="sec-iterabletolist" aoid="IterableToList">
