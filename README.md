@@ -98,6 +98,9 @@ Promise.any([
 
 ## Implementations
 
+- JavaScript engines:
+    - [SpiderMonkey](https://bugzilla.mozilla.org/show_bug.cgi?id=1568903)
+
 - Polyfills:
     - [core-js](https://github.com/zloirock/core-js#promiseany)
     - [es-shims](https://github.com/es-shims/Promise.any)
