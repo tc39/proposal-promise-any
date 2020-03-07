@@ -104,3 +104,5 @@ Promise.any([
 - Polyfills:
     - [core-js](https://github.com/zloirock/core-js#promiseany)
     - [es-shims](https://github.com/es-shims/Promise.any)
+
+- [TypeScript](https://github.com/microsoft/TypeScript/pull/33844)
