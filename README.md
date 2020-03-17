@@ -100,6 +100,7 @@ Promise.any([
 
 - JavaScript engines:
     - [SpiderMonkey](https://bugzilla.mozilla.org/show_bug.cgi?id=1568903)
+    - [XS](https://blog.moddable.com/blog/xs10/)
 
 - Polyfills:
     - [core-js](https://github.com/zloirock/core-js#promiseany)
