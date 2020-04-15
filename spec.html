@@ -177,7 +177,6 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <emu-alg>
           1. Let _E_ be the *this* value.
           1. If Type(_E_) is not Object, throw a *TypeError* exception.
-          1. If _E_ does not have an [[ErrorData]] internal slot, throw a *TypeError* exception.
           1. If _E_ does not have an [[AggregateErrors]] internal slot, throw a *TypeError* exception.
           1. Return ! CreateArrayFromList(_E_.[[AggregateErrors]]).
         </emu-alg>
