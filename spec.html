@@ -119,7 +119,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
         <emu-alg>
           1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-          1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]], [[AggregateErrors]] »).
+          1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateErrorPrototype%"`, « [[ErrorData]], [[AggregateErrors]] »).
           1. Let _errorsList_ be ? IterableToList(_errors_).
           1. Set _O_.[[AggregateErrors]] to _errorsList_.
           1. If _message_ is not _undefined_, then
