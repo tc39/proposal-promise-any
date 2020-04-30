@@ -171,13 +171,14 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <p>The initial value of `AggregateError.prototype.name` is `"AggregateError"`.</p>
       </emu-clause>
 
-      <emu-clause id="sec-aggregate-error.prototype.name">
+      <emu-clause id="sec-aggregate-error.prototype.errors">
         <h1>get _AggregateError_.prototype.errors</h1>
         <p>`AggregateError.prototype.errors` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps:</p>
         <emu-alg>
           1. Let _E_ be the *this* value.
           1. If Type(_E_) is not Object, throw a *TypeError* exception.
           1. If _E_ does not have an [[AggregateErrors]] internal slot, throw a *TypeError* exception.
+          1. Assert(_E_ has an [[ErrorData]] internal slot).
           1. Return ! CreateArrayFromList(_E_.[[AggregateErrors]]).
         </emu-alg>
       </emu-clause>
