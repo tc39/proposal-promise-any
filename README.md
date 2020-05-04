@@ -99,7 +99,9 @@ Promise.any([
 ## Implementations
 
 - JavaScript engines:
+    - [JavaScriptCore](https://bugs.webkit.org/show_bug.cgi?id=202566)
     - [SpiderMonkey](https://bugzilla.mozilla.org/show_bug.cgi?id=1568903)
+    - [V8](https://bugs.chromium.org/p/v8/issues/detail?id=9808)
     - [XS](https://blog.moddable.com/blog/xs10/)
     - [engine262](https://github.com/engine262/engine262/commit/c68877ef1c4633daac8b58b5ce1876f709c1cc16)
 
