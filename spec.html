@@ -34,7 +34,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 
 <emu-intro id="intro">
   <h1>Introduction</h1>
-  <p>`Promise.any()` accepts an array of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an array of rejection reasons if all of the given promises are rejected.</p>
+  <p>`Promise.any()` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an `AggregateError` holding the rejection reasons if all of the given promises are rejected.</p>
 </emu-intro>
 
 <emu-clause id="sec-well-known-intrinsic-objects">

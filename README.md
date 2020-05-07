@@ -21,7 +21,7 @@ These are all commonly available in userland promise libraries, and they’re al
 
 ## Proposed solution
 
-`Promise.any` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an `AggregateError` holding the rejection reasons if all of the given promises are rejected.
+`Promise.any` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an `AggregateError` holding the rejection reasons if all of the given promises are rejected. (If something more fundamental goes wrong, e.g. iterating over the iterable results in an exception, `Promise.any` returns a rejected promise with that exception.)
 
 ## High-level API
 
