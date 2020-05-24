@@ -119,12 +119,12 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <p>When the *AggregateError* function is called with arguments _errors_ and _message_, the following steps are taken:</p>
         <emu-alg>
           1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
-          1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]], [[AggregateErrors]] »).
+          1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
           1. Let _errorsList_ be ? IterableToList(_errors_).
-          1. Set _O_.[[AggregateErrors]] to _errorsList_.
           1. If _message_ is not _undefined_, then
             1. Let msg be ? ToString(_message_).
-            1. Perform ! CreateMethodProperty(_O_, `"message"`, _msg_).
+            1. Perform ! DefinePropertyOrThrow(_O_, `"message"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: _msg_ }).
+          1. Perform ! DefinePropertyOrThrow(_O_, `"errors"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: ! CreateArrayFromList(_errorsList_) }).
           1. Return _O_.
         </emu-alg>
       </emu-clause>
@@ -151,8 +151,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       <p>The _AggregateError_ prototype object:</p>
       <ul>
         <li>is an ordinary object.</li>
-        <li>is not an Error instance and does not have an [[ErrorData]] internal slot.</li>
-        <li>is not an AggregateError instance and does not have an [[AggregateErrors]] internal slot.</li>
+        <li>is not an Error instance or an AggregateError instance and does not have an [[ErrorData]] internal slot.</li>
         <li>has a [[Prototype]] internal slot whose value is the intrinsic object %Error.prototype%.</li>
       </ul>
 
@@ -170,23 +169,11 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <h1>_AggregateError_.prototype.name</h1>
         <p>The initial value of `AggregateError.prototype.name` is `"AggregateError"`.</p>
       </emu-clause>
-
-      <emu-clause id="sec-aggregate-error.prototype.errors">
-        <h1>get _AggregateError_.prototype.errors</h1>
-        <p>`AggregateError.prototype.errors` is an accessor property whose set accessor function is *undefined*. Its get accessor function performs the following steps:</p>
-        <emu-alg>
-          1. Let _E_ be the *this* value.
-          1. If Type(_E_) is not Object, throw a *TypeError* exception.
-          1. If _E_ does not have an [[AggregateErrors]] internal slot, throw a *TypeError* exception.
-          1. Assert: _E_ has an [[ErrorData]] internal slot.
-          1. Return ! CreateArrayFromList(_E_.[[AggregateErrors]]).
-        </emu-alg>
-      </emu-clause>
     </emu-clause>
 
     <emu-clause id="sec-properties-of-aggregate-error-instances">
       <h1>Properties of _AggregateError_ Instances</h1>
-      <p>_AggregateError_ instances are ordinary objects that inherit properties from their _AggregateError_ prototype object and have an [[AggregateErrors]] internal slot and an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) to identify Error, _NativeError_, or _AggregateError_ instances.</p>
+      <p>_AggregateError_ instances are ordinary objects that inherit properties from their _AggregateError_ prototype object and have an [[ErrorData]] internal slot whose value is *undefined*. The only specified use of [[ErrorData]] is by `Object.prototype.toString` (<emu-xref href="#sec-object.prototype.tostring"></emu-xref>) to identify Error, _NativeError_, or _AggregateError_ instances.</p>
     </emu-clause>
   </emu-clause>
 </emu-clause>
@@ -229,7 +216,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
           1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
           1. If _remainingElementsCount_.[[Value]] is 0, then
             1. Let _error_ be a newly created `AggregateError` object.
-            1. Set _error_.[[AggregateErrors]] to _errors_.
+            1. Perform ! DefinePropertyOrThrow(_error_, `"errors"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: _errors_ }).
             1. Return ThrowCompletion(_error_).
           1. Return _resultCapability_.[[Promise]].
         1. Let _nextValue_ be IteratorValue(_next_).
@@ -267,7 +254,7 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
       1. Set _remainingElementsCount_.[[Value]] to _remainingElementsCount_.[[Value]] - 1.
       1. If _remainingElementsCount_.[[Value]] is 0, then
         1. Let _error_ be a newly created `AggregateError` object.
-        1. Set _error_.[[AggregateErrors]] to _errors_.
+        1. Perform ! DefinePropertyOrThrow(_error_, `"errors"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: _errors_ }).
         1. Return ? Call(_promiseCapability_.[[Reject]], undefined, &laquo; _error_ &raquo;).
       1. Return *undefined*.
     </emu-alg>
