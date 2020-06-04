@@ -120,10 +120,11 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
         <emu-alg>
           1. If NewTarget is *undefined*, let _newTarget_ be the active function object, else let _newTarget_ be NewTarget.
           1. Let _O_ be ? OrdinaryCreateFromConstructor(_newTarget_, `"%AggregateError.prototype%"`, « [[ErrorData]] »).
-          1. Let _errorsList_ be ? IterableToList(_errors_).
           1. If _message_ is not _undefined_, then
             1. Let msg be ? ToString(_message_).
-            1. Perform ! DefinePropertyOrThrow(_O_, `"message"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: _msg_ }).
+            1. Let msgDesc be the PropertyDescriptor { [[Value]]: _msg_, [[Writable]]: *true*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.
+            1. Perform ! DefinePropertyOrThrow(_O_, *"message"*, _msgDesc_).
+          1. Let _errorsList_ be ? IterableToList(_errors_).
           1. Perform ! DefinePropertyOrThrow(_O_, `"errors"`, Property Descriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: ! CreateArrayFromList(_errorsList_) }).
           1. Return _O_.
         </emu-alg>
