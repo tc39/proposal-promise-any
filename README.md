@@ -91,6 +91,7 @@ Promise.any([
 - [July 2019](https://github.com/tc39/notes/blob/master/meetings/2019-07/july-24.md#promiseany)
 - October 2019 [part one](https://github.com/tc39/notes/blob/master/meetings/2019-10/october-2.md#promiseany-for-stage-3) and [part two](https://github.com/tc39/notes/blob/master/meetings/2019-10/october-3.md#promiseany-reprise)
 - June 2020
+- July 2020
 
 ## Specification
 
