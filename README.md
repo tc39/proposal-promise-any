@@ -1,4 +1,4 @@
-# ECMAScript proposal: `Promise.any`
+# ECMAScript proposal: `Promise.any` + `AggregateError`
 
 **Author**: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 
