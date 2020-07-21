@@ -10,12 +10,12 @@
 
 There are [four main combinators in the `Promise` landscape](https://v8.dev/features/promise-combinators).
 
-| name                 | description                                     |                    |
-| -------------------- | ----------------------------------------------- | ------------------ |
-| `Promise.allSettled` | does not short-circuit                          | added in ES2020 ✅ |
-| `Promise.all`        | short-circuits when an input value is rejected  | added in ES2015 ✅ |
-| `Promise.race`       | short-circuits when an input value is settled   | added in ES2015 ✅ |
-| `Promise.any`        | short-circuits when an input value is fulfilled | this proposal 🆕   |
+| name                 | description                                     |                                       |
+| -------------------- | ----------------------------------------------- | ------------------------------------- |
+| `Promise.allSettled` | does not short-circuit                          | added in ES2020 ✅                    |
+| `Promise.all`        | short-circuits when an input value is rejected  | added in ES2015 ✅                    |
+| `Promise.race`       | short-circuits when an input value is settled   | added in ES2015 ✅                    |
+| `Promise.any`        | short-circuits when an input value is fulfilled | this proposal 🆕 scheduled for ES2021 |
 
 These are all commonly available in userland promise libraries, and they’re all independently useful, each one serving different use cases.
 
