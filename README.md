@@ -4,7 +4,7 @@
 
 **Champion**: Mathias Bynens
 
-**Stage**: Stage 3 of [the TC39 process](https://tc39.github.io/process-document/).
+**Stage**: Stage 4 of [the TC39 process](https://tc39.es/process-document/).
 
 ## Motivation
 
@@ -96,7 +96,7 @@ Promise.any([
 ## Specification
 
 - [Ecmarkup source](https://github.com/tc39/proposal-promise-any/blob/master/spec.html)
-- [HTML version](https://tc39.github.io/proposal-promise-any/)
+- [HTML version](https://tc39.es/proposal-promise-any/)
 
 ## Implementations
 
