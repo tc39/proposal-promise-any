@@ -10,28 +10,6 @@ contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 </pre>
 <script src="ecmarkup.js" defer></script>
 <link rel="stylesheet" href="ecmarkup.css">
-<style>
-  ins.block {
-    font-weight: bold;
-    font-style: italic;
-  }
-  hr {
-    height: 0.25em;
-    background: #ccc;
-    border: 0;
-    margin: 2em 0;
-  }
-  .unicode-property-table {
-    table-layout: fixed;
-    width: 100%;
-    font-size: 80%;
-  }
-  .unicode-property-table ul {
-    padding-left: 0;
-    list-style: none;
-  }
-</style>
-
 <emu-intro id="intro">
   <h1>Introduction</h1>
   <p>`Promise.any()` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an `AggregateError` holding the rejection reasons if all of the given promises are rejected.</p>
