@@ -8,8 +8,16 @@ location: https://tc39.es/proposal-promise-any/
 copyright: false
 contributors: Mathias Bynens, Kevin Gibbons, Sergey Rubanov
 </pre>
+<style>
+  aside {
+    background: yellow;
+    padding: 1rem;
+    font-size: 200%;
+  }
+</style>
 <script src="ecmarkup.js" defer></script>
 <link rel="stylesheet" href="ecmarkup.css">
+<aside><strong>Note:</strong> This proposal has been integrated into <a href="https://tc39.es/ecma262/">the upstream ECMAScript specification</a> — please update your references to point there. This snapshot is only kept for historical purposes.</aside>
 <emu-intro id="intro">
   <h1>Introduction</h1>
   <p>`Promise.any()` accepts an iterable of promises and returns a promise that is fulfilled by the first given promise to be fulfilled, or rejected with an `AggregateError` holding the rejection reasons if all of the given promises are rejected.</p>
